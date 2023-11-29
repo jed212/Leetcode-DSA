@@ -8,17 +8,16 @@ class Solution:
         dummy = ListNode(0, head)
         
         slow, fast = dummy, head
-        
-        for p in range(n):
-            if fast is not None:
-                fast = fast.next
                 
-        if fast is None:
-            return head.next
+        #Move the fast pointer n steps ahead
+        while n > 0 and fast:
+            fast = fast.next
+            n-=1
         
-        while fast is not None:
+        while fast:
             slow = slow.next
             fast = fast.next
-            
+        
+        #delete the nth node
         slow.next = slow.next.next
         return dummy.next
